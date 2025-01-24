@@ -1,37 +1,39 @@
 document.body.classList.add("container");
+document.body.querySelector(".container");
 
 const btn = document.createElement("button");
-btn.textContent = "Click Me";
+btn.textContent = "Grid Restart";
 document.body.appendChild(btn);
 
 function handleClick() {
-  const msg = window.prompt("Cuantos cuadrados por lados desea");
-  let userChoice = Number(msg);
+  createGrid();
+}
 
-  if (isNaN(userChoice) || userChoice <= 0 || userChoice >= 100) {
-    return (msg = window.prompt("Cuantos cuadrados por lados desea"));
+btn.addEventListener("click", handleClick);
+
+const gridContainer = document.getElementById("grid");
+
+function createGrid() {
+  const msg = prompt("¿Cuántos cuadrados por lado deseas?");
+  let userResponse = Number(msg);
+  console.log(userResponse);
+
+  if (isNaN(userResponse) || userResponse <= 0 || userResponse > 100) {
+    alert("Por favor, ingresa un número válido.");
   } else {
-    for (let i = 0; i < 256; i++) {
-      let div = document.createElement("div");
-      div.addEventListener("mouseover", () => {
-        div.style.backgroundColor = "darkRed";
-      });
+    gridContainer.innerHTML = "";
+    let squaresNbr = userResponse * userResponse;
 
-      container.appendChild(div);
-      console.log("new grid");
+    for (let i = 0; i < squaresNbr; i++) {
+      let divSquares = document.createElement("div");
+      divSquares.style.height = `calc(600px / ${userResponse})`;
+
+      divSquares.addEventListener("mouseover", () => {
+        divSquares.style.backgroundColor = "darkGrey";
+      });
+      console.log("Grid Created");
+      gridContainer.appendChild(divSquares);
     }
   }
 }
-btn.addEventListener("click", handleClick);
-
-const container = document.getElementById("grid");
-
-for (let i = 0; i < 256; i++) {
-  let div = document.createElement("div");
-  div.addEventListener("mouseover", () => {
-    div.style.backgroundColor = "darkGrey";
-  });
-
-  container.appendChild(div);
-  console.log("Grid Generated");
-}
+createGrid();
