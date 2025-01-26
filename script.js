@@ -43,10 +43,10 @@ function createGrid(size) {
 
 function handleClick() {
   const userResponse = parseInt(
-    prompt("¿Cuántos cuadrados por lado deseas? (Máximo: 100)")
+    prompt("How many squares per side would you like? (Maximum: 100)")
   );
   if (isNaN(userResponse) || userResponse <= 0 || userResponse > 100) {
-    alert("Por favor, ingresa un número válido entre 1 y 100.");
+    alert("Please enter a valid number between 1 and 100.");
   } else {
     createGrid(userResponse);
   }
